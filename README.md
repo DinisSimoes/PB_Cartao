@@ -2,7 +2,7 @@
 
 Worker responsável por consumir mensagens da fila cartao-credito-queue, processar as informações de criação de cartões, salvar os dados no banco de dados e publicar novos eventos em fila (por exemplo, entrega-queue, que poderia ser consumida por outro worker).
 
-## ⚙️ Lógica de criação de cartões
+## Lógica de criação de cartões
 
 A geração do número do cartão é feita usando Math.Random, apenas para simplificar o exemplo.
 
@@ -21,3 +21,11 @@ Associe o pacote PB_Common
 Execute a solução
 
  - Após configurar o ambiente e as dependências, basta rodar a sln normalmente.
+
+## Observações
+
+O mecanismo de retry é resiliente e incremental, ideal para sistemas distribuídos com filas.
+
+O backoff exponencial evita sobrecarga em casos de falhas consecutivas.
+
+É possível visualizar e reenviar falhas manualmente via API REST (FailuresController).
